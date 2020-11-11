@@ -1,6 +1,7 @@
 package com.khrapkov.utask.service;
 
 import com.khrapkov.utask.dto.request.RequestPaymentDto;
+import com.khrapkov.utask.dto.response.ResponseTotalAmountDto;
 import com.khrapkov.utask.entity.PaymentEntity;
 import com.khrapkov.utask.exceptions.NotFoundException;
 import com.khrapkov.utask.repository.PaymentRepository;
@@ -32,11 +33,13 @@ public class PaymentService {
         this.paymentRepository.saveAll(payments);
     }
 
-    public Long getTotalAmountBySender(String sender){
+    public ResponseTotalAmountDto getTotalAmountBySender(String sender){
         Long totalAmount = this.paymentRepository.getTotalAmountByPerson(sender);
         if(totalAmount == null)
-//            throw new NotFoundException("The sender with name  \"" + sender + "\" was not found");
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The sender with name  \\\"\" + sender + \"\\\" was not found");
-        return totalAmount;
+            throw new NotFoundException("The sender with name  \"" + sender + "\" was not found");
+        ResponseTotalAmountDto totalAmountDto = new ResponseTotalAmountDto();
+        totalAmountDto.setSender(sender);
+        totalAmountDto.setTotalAmount(totalAmount);
+        return totalAmountDto;
     }
 }

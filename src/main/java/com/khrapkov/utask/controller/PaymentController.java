@@ -1,6 +1,7 @@
 package com.khrapkov.utask.controller;
 
 import com.khrapkov.utask.dto.request.RequestPaymentDto;
+import com.khrapkov.utask.dto.response.ResponseTotalAmountDto;
 import com.khrapkov.utask.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class PaymentController {
     }
 
     @GetMapping()
-    public Long getTotalAmountBySender(@RequestParam String name){
+    public ResponseTotalAmountDto getTotalAmountBySender(@RequestParam String name){
         return this.paymentService.getTotalAmountBySender(name);
     }
 }
