@@ -4,12 +4,10 @@ import com.khrapkov.utask.dto.request.RequestPaymentDto;
 import com.khrapkov.utask.dto.response.ResponseTotalAmountDto;
 import com.khrapkov.utask.entity.PaymentEntity;
 import com.khrapkov.utask.exceptions.NotFoundException;
-import com.khrapkov.utask.repository.PaymentRepository;
+import com.khrapkov.utask.repository.first_db_repository.FirstDBPaymentRepository;
 import com.khrapkov.utask.util.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,11 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class PaymentService {
 
-    private final PaymentRepository paymentRepository;
+    private final FirstDBPaymentRepository paymentRepository;
     private final Mapper mapper;
 
     @Autowired
-    public PaymentService(PaymentRepository repository, Mapper mapper){
+    public PaymentService(FirstDBPaymentRepository repository, Mapper mapper){
         this.paymentRepository = repository;
         this.mapper = mapper;
     }

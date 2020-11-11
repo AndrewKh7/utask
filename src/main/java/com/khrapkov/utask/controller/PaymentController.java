@@ -20,8 +20,8 @@ public class PaymentController {
     }
 
     @PostMapping
-    public void saveLisOfPayments(@RequestBody List<RequestPaymentDto> paymentDtos){
-        this.paymentService.savePaymentList(paymentDtos);
+    public void saveLisOfPayments(@RequestBody List<RequestPaymentDto> paymentsDto){
+        this.paymentService.savePaymentList(paymentsDto);
     }
 
     @GetMapping()
