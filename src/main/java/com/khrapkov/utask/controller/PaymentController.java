@@ -23,8 +23,8 @@ public class PaymentController {
         this.paymentService.savePaymentList(paymentDtos);
     }
 
-    @GetMapping("/{sender}")
-    public Long getTotalAmountBySender(@PathVariable("sender") String sender){
-        return this.paymentService.getTotalAmountBySender(sender);
+    @GetMapping()
+    public Long getTotalAmountBySender(@RequestParam String name){
+        return this.paymentService.getTotalAmountBySender(name);
     }
 }
