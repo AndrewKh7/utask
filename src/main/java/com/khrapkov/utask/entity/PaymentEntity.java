@@ -3,6 +3,8 @@ package com.khrapkov.utask.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Currency;
 
 @Entity
 @Data
@@ -14,5 +16,5 @@ public class PaymentEntity {
 
     private String sender;
     private String recipient;
-    private Double amount;
+    private long amount;
 }

@@ -30,8 +30,8 @@ public class PaymentService {
         this.paymentRepository.saveAll(payments);
     }
 
-    public Double getTotalAmountBySender(String sender){
-        Double totalAmount = this.paymentRepository.getTotalAmountByPerson(sender);
+    public Long getTotalAmountBySender(String sender){
+        Long totalAmount = this.paymentRepository.getTotalAmountByPerson(sender);
         if(totalAmount == null)
             throw new NotFondException("The sender with name  \"" + sender + "\" was not found");
         return totalAmount;
