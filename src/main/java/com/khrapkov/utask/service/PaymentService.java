@@ -4,10 +4,8 @@ import com.khrapkov.utask.dto.request.RequestPaymentDto;
 import com.khrapkov.utask.dto.response.ResponseTotalAmountDto;
 import com.khrapkov.utask.entity.PaymentEntity;
 import com.khrapkov.utask.exceptions.NotFoundException;
-import com.khrapkov.utask.repository.first_db_repository.FirstDBPaymentRepository;
 import com.khrapkov.utask.util.Mapper;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

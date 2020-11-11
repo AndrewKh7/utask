@@ -5,7 +5,6 @@ import com.khrapkov.utask.repository.first_db_repository.FirstDBPaymentRepositor
 import com.khrapkov.utask.repository.second_db_repository.SecondDBPaymentRepository;
 import com.khrapkov.utask.repository.third_db_repository.ThirdDBPaymentRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +19,15 @@ public class ShardingService {
 
     public List<PaymentEntity> saveAll(List<PaymentEntity> payments){
         List<PaymentEntity> totalList = new ArrayList<>();
-        totalList.addAll( this.firstDBPaymentRepository.saveAll(payments) );
-        totalList.addAll( this.secondDBPaymentRepository.saveAll(payments) );
-        totalList.addAll( this.thirdDBPaymentRepository.saveAll(payments) );
+        List<List<PaymentEntity>> partition = new ArrayList<>();
+        int divider = payments.size()/3;
+        partition.add( payments.subList(0, divider));
+        partition.add( payments.subList(divider,2*divider));
+        partition.add( payments.subList(2*divider, payments.size()));
+
+        totalList.addAll( this.firstDBPaymentRepository.saveAll(partition.get(0)) );
+        totalList.addAll( this.secondDBPaymentRepository.saveAll(partition.get(1)) );
+        totalList.addAll( this.thirdDBPaymentRepository.saveAll(partition.get(2)) );
         return totalList;
     }
 
