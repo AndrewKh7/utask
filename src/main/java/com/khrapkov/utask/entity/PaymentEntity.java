@@ -8,7 +8,7 @@ import java.util.Currency;
 
 @Entity
 @Data
-@Table(name = "payment")
+@Table(name = "payment", indexes = { @Index(name = "SENDER_IDX", columnList = "sender") })
 public class PaymentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,5 +16,5 @@ public class PaymentEntity {
 
     private String sender;
     private String recipient;
-    private long amount;
+    private BigDecimal amount;
 }

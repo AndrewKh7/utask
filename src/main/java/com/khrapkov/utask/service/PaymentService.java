@@ -8,6 +8,7 @@ import com.khrapkov.utask.util.Mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,9 +27,7 @@ public class PaymentService {
     }
 
     public ResponseTotalAmountDto getTotalAmountBySender(String sender){
-        Long totalAmount = this.shardingService.getTotalAmountBySender(sender);
-        if(totalAmount == null)
-            throw new NotFoundException("The sender with name  \"" + sender + "\" was not found");
+        BigDecimal totalAmount = this.shardingService.getTotalAmountBySender(sender);
         ResponseTotalAmountDto totalAmountDto = new ResponseTotalAmountDto();
         totalAmountDto.setSender(sender);
         totalAmountDto.setTotalAmount(totalAmount);
